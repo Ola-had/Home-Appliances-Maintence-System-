@@ -37,11 +37,12 @@ namespace HomeApplianceMaintenanceSystem
             }
         }
 
-        // Mark every appliance as repaired (the setter raises the event for each one)
+        // Mark every appliance as repaired (the setter raises the event for each one and update the static counter)
         public void MarkAllAsRepaired()
         {
             foreach (Appliance appliance in appliances)
             {
+                Console.WriteLine("--- Technician finishing repair... ---");
                 appliance.IsRepaired = true;
             }
         }

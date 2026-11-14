@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+
+
 
 namespace HomeApplianceMaintenanceSystem
 {
@@ -17,8 +20,11 @@ namespace HomeApplianceMaintenanceSystem
         private bool isRepaired;     // Repair status
 
 
-        //  Define the Event using the Delegate
+        // 4. Define the Event using the Delegate
         public event DeviceStatusChangedHandler OnStatusChanged;
+
+        // 5.Static Property to count repaired devices
+        public static int TotalRepairedDevices { get; private set; } = 0;
 
 
 
@@ -49,11 +55,12 @@ namespace HomeApplianceMaintenanceSystem
                 {
                     isRepaired = value;
 
-                    // . Raise the Event if the condition is met
+                    // 4. Raise the Event if the condition is met
                     // Example condition: Trigger event when the device becomes repaired
                     if (isRepaired)
                     {
                         RaiseStatusChangedEvent($"[NOTIFICATION] Appliance {this.GetType().Name} with Serial {this.SerialNumber} has been fully repaired and is ready for delivery.");
+                        TotalRepairedDevices++;   // 5. Update Static Counter based on status
                     }
                     else
                     {
@@ -73,6 +80,10 @@ namespace HomeApplianceMaintenanceSystem
 
         public Appliance(string serialNumber, string brand)
         {
+            // 5. Use the Static Validation Method
+            if (!MaintenanceHelper.IsValidSerialNumber(serialNumber))
+                throw new ArgumentException($"Invalid Serial Number: '{serialNumber}'. Format must be XXX-1234 (e.g., REF-1001).");
+
             this.serialNumber = serialNumber;
             this.brand = brand;
             isRepaired = false; // By default, the appliance is not repaired
@@ -91,5 +102,18 @@ namespace HomeApplianceMaintenanceSystem
         }
 
     }
-}
 
+
+    // Static class for data validation
+    public static class MaintenanceHelper
+    {
+        // Format: 3 uppercase letters + hyphen + 4 digits (e.g., REF-1234)
+        public static bool IsValidSerialNumber(string serialNumber)
+        {
+            if (string.IsNullOrWhiteSpace(serialNumber)) return false;
+
+            string pattern = @"^[A-Z]{3}-\d{4}$";
+            return Regex.IsMatch(serialNumber, pattern);
+        }
+    }
+}

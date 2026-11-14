@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace HomeApplianceMaintenanceSystem
 {
+
     // ==========================================
     // 2. Inheritance & Polymorphism
     // ==========================================
-
-
     // --- Subclasses ---
 
     // 1. Refrigerator
