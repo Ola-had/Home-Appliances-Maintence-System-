@@ -22,7 +22,7 @@ namespace HomeApplianceMaintenanceSystem
             center.AddAppliance(new WashingMachine("WSH-2002", "Samsung", true));
             center.AddAppliance(new AirConditioner("AIR-3003", "Carrier", 120, true));
 
-            Console.WriteLine("--- List of Appliances in the Maintenance Center ---\n");
+            Console.WriteLine("--- List of Appliances in the Maintenance Center with its status ---\n");
             center.DisplayAll();
 
             Console.WriteLine("--------------------------------------");
