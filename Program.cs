@@ -10,6 +10,7 @@ namespace HomeApplianceMaintenanceSystem
     {
         static void Main(string[] args)
         {
+
         }
     }
 }

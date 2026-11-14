@@ -17,6 +17,8 @@ namespace HomeApplianceMaintenanceSystem
 
         string GetDeviceInfo();
         double CalculateRepairCost();
+
+
     }
 
 }
