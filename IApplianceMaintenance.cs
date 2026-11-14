@@ -7,12 +7,18 @@ using System.Threading.Tasks;
 namespace HomeApplianceMaintenanceSystem
 {
 
+
+    // 4. Define a Delegate for notification
+    // This delegate defines the signature of the method that will handle the event
+    public delegate void DeviceStatusChangedHandler(Appliance sender, string message);
+
+
     // ==========================================
     // 1. Abstraction
     // ==========================================
 
     // Interface containing the shared core operations for all appliances
-    interface IApplianceMaintenance
+    public interface IApplianceMaintenance
     {
 
         string GetDeviceInfo();

@@ -8,7 +8,6 @@ namespace HomeApplianceMaintenanceSystem
 {
     class MaintenanceCenter
     {
-
         // Create a list of appliances (Polymorphism)
         private List<Appliance> appliances = new List<Appliance>();
 
@@ -35,6 +34,15 @@ namespace HomeApplianceMaintenanceSystem
             {
                 Console.WriteLine(appliance.GetDeviceInfo());
                 Console.WriteLine($"Repair Cost: {appliance.CalculateRepairCost()} SAR\n");
+            }
+        }
+
+        // Mark every appliance as repaired (the setter raises the event for each one)
+        public void MarkAllAsRepaired()
+        {
+            foreach (Appliance appliance in appliances)
+            {
+                appliance.IsRepaired = true;
             }
         }
     }

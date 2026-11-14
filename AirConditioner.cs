@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace HomeApplianceMaintenanceSystem
 {
-
     // 3. Air Conditioner
 
     class AirConditioner : Appliance

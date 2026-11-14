@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 namespace HomeApplianceMaintenanceSystem
 {
 
-
     // 2. Washing Machine
 
     class WashingMachine : Appliance
