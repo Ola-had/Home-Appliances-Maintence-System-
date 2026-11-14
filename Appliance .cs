@@ -7,36 +7,30 @@ using System.Threading.Tasks;
 namespace HomeApplianceMaintenanceSystem
 {
 
-    // ==========================================
-    // 2. Inheritance 
-    // ==========================================
-
-    // Base Abstract Class
-    abstract class Appliance : IApplianceMaintenance
+    // 1. Base Abstract Class
+    public abstract class Appliance : IApplianceMaintenance
     {
-        // 3. Encapsulation
-        // All fields are private and cannot be accessed directly
-        private string serialNumber; // Serial number (sensitive, cannot be modified)
+
+        private string serialNumber; // Serial number 
         private string brand;        // Brand
         private bool isRepaired;     // Repair status
 
+        // Constructor to initialize basic data
+        protected Appliance(string serialNumber, string brand)
+        {
 
-
-
-
+            this.serialNumber = serialNumber;
+            this.brand = brand;
+            isRepaired = false; // By default, the appliance is not repaired
+        }
         // Abstract method that every subclass must implement in its own way
         public abstract double CalculateRepairCost();
 
+        // Shared virtual method that subclasses can override if needed
         public virtual string GetDeviceInfo()
         {
-            return $"Brand: {brand}, Serial: {serialNumber}";
+            return $"Device: {this.GetType().Name} | Brand: {brand}, Serial: {serialNumber}";
         }
-
-
-
-
-
-
-
     }
 }
+
